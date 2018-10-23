@@ -64,18 +64,17 @@ Click on the **Launch Stack** button below to launch the CloudFormation Stack to
 
 **Stack Assumptions:** The pipeline stack assumes the following conditions, and may not function properly if they are not met:
 1. The pipeline stack name is less than 20 characters long
-2. The stack is launched in the US East (N. Virginia) Region (`us-east-1`).
 
 *NOTE: The URL for Launch Stack is automatically generated through a pipeline in one of Stelligent's AWS accounts.*
 
-[![Launch CFN stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#cstack=sn~sagemaker-stack|turl~https://s3.amazonaws.com/sagemaker-pipeline-src/CodePipeline/pipeline.yaml)
+[![Launch CFN stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?#cstack=sn~sagemaker-stack|turl~https://s3.amazonaws.com/sagemaker-pipeline-src/CodePipeline/pipeline.yaml)
 
 You can launch the same stack using the AWS CLI. Here's an example:
 
 `aws cloudformation create-stack --stack-name YOURSTACKNAME --template-body file:///home/ec2-user/environment/sagemaker-pipeline/CodePipeline/pipeline.yaml --parameters ParameterKey=Email,ParameterValue="youremailaddress@example.com" ParameterKey=GitHubToken,ParameterValue="YOURGITHUBTOKEN12345ab1234234" --capabilities CAPABILITY_NAMED_IAM`
 
 
-<!-- [![Launch CFN stack](https://s3.amazonaws.com/stelligent-training-public/public/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#cstack=sn~DromedaryStack|turl~https://s3.amazonaws.com/stelligent-training-public/master/dromedary-master.json) -->
+<!-- [![Launch CFN stack](https://s3.amazonaws.com/stelligent-training-public/public/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?#cstack=sn~DromedaryStack|turl~https://s3.amazonaws.com/stelligent-training-public/master/dromedary-master.json) -->
 
 <!-- TODO: Change above to correct URL!!! -->
 
@@ -96,6 +95,7 @@ CommitID | The ID of the current commit.
 Environment | Current environment we are working in.
 ParentStackName | The name of the pipeline stack.
 SageMakerRole | The name of the SageMaker role.
+SageMakerImage | The name of the SageMaker training image.
 Timestamp | Resource timestamp to prevent naming conflicts. -->
 
 <!-- ### pipeline.yaml -->
@@ -111,7 +111,7 @@ Branch | The name (not URL) of the GitHub repository’s branch to use.
 
 To launch a endpoint using the provide chalice project all you have to do is <!-- pip install chalice --> and then run <!-- chalice deploy --> from the Chalice directory in this repo. Once piece that will change depending on your endpoint is the <!-- endpoint_name --> value in <!-- .chalice/config.json -->.
 
-Note this will create resource that you will manually have to delete. It will create a ApiGateway, IAM role, and a Lambda function. 
+Note this will create resource that you will manually have to delete. It will create a ApiGateway, IAM role, and a Lambda function.
 
 For more details checkout this blog, it's also the source for this code: https://medium.com/@julsimon/using-chalice-to-serve-sagemaker-predictions-a2015c02b033
 

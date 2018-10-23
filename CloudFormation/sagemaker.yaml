@@ -26,6 +26,17 @@ Parameters:
     MaxLength: '64'
     MinLength: '1'
     Type: String
+  SageMakerImage:
+    Description: Name of SageMaker training image
+    MaxLength: '256'
+    MinLength: '1'
+    Type: String
+  SageMakerInstanceType:
+    Default: ml.t2.medium
+    Description: Type of Instance for SageMaker inference
+    MaxLength: '64'
+    MinLength: '1'
+    Type: String
   Timestamp:
     Description: Resource timestamp to prevent naming conflicts
     MaxLength: '64'
@@ -39,7 +50,7 @@ Resources:
       ExecutionRoleArn: !Sub ${SageMakerRole}
       PrimaryContainer:
         ModelDataUrl: !Sub s3://${BucketName}/${ParentStackName}-${CommitID}-${Timestamp}/output/model.tar.gz
-        Image: 811284229777.dkr.ecr.us-east-1.amazonaws.com/image-classification:latest
+        Image: !Sub ${SageMakerImage}
   Endpoint:
     Type: "AWS::SageMaker::Endpoint"
     DependsOn: EndpointConfig
@@ -51,9 +62,9 @@ Resources:
     DependsOn: Model
     Properties:
         EndpointConfigName: !Sub ${Environment}-${ParentStackName}-${CommitID}-${Timestamp}
-        ProductionVariants:  
+        ProductionVariants:
         - ModelName: !GetAtt Model.ModelName
           VariantName: AllTraffic
           InitialInstanceCount: 1
-          InstanceType: ml.t2.medium
+          InstanceType: !Sub ${SageMakerInstanceType}
           InitialVariantWeight: 1

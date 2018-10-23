@@ -40,14 +40,14 @@ Resources:
       BucketName: !Sub ${AWS::StackName}-pipeline-artifact-store
       VersioningConfiguration:
         Status: Enabled
-  
+
   DataBucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub ${AWS::StackName}-pipeline-data
       VersioningConfiguration:
         Status: Enabled
-        
+
   CodePipelineSNSTopic:
     Type: AWS::SNS::Topic
     Properties:
@@ -55,8 +55,7 @@ Resources:
       Subscription:
         - Endpoint: !Ref Email
           Protocol: email
-          
-  
+
   CFNNagProject:
     Type: AWS::CodeBuild::Project
     Properties:
@@ -107,7 +106,7 @@ Resources:
             build:
               commands:
                 - echo "Running training.py"
-                - python3 Source/training.py "${SagemakerRole.Arn}" "${DataBucket}" "${AWS::StackName}" $CODEBUILD_RESOLVED_SOURCE_VERSION
+                - python3 Source/training.py "${AWS::Region}" "${SagemakerRole.Arn}" "${DataBucket}" "${AWS::StackName}" $CODEBUILD_RESOLVED_SOURCE_VERSION
             post_build:
               commands:
                 - echo "Cleaning"
@@ -348,7 +347,7 @@ Resources:
                 - iam:PassRole
                 Effect: Allow
                 Resource: !Sub arn:aws:iam::${AWS::AccountId}:role/${AWS::StackName}-sagemaker-role
-             
+
   PipelineRole:
     Type: AWS::IAM::Role
     Properties:
@@ -396,7 +395,7 @@ Resources:
         Version: '2012-10-17'
       Path: /
       ManagedPolicyArns:
-      - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess 
+      - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
       Policies:
         - PolicyName: S3Access
           PolicyDocument:
@@ -410,7 +409,7 @@ Resources:
                 Effect: Allow
                 Resource: arn:aws:s3:::*
 
-Outputs:      
+Outputs:
   PipelineUrl:
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
     Description: CodePipeline URL
