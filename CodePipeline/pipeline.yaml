@@ -110,7 +110,6 @@ Resources:
             post_build:
               commands:
                 - echo "Cleaning"
-                - rm caltech*
           artifacts:
             files:
               - '**/*'
