@@ -92,7 +92,7 @@ training_params = \
     },
     "RoleArn": role,
     "OutputDataConfig": {
-        "S3OutputPath": 's3://{}/output'.format(bucket)
+        "S3OutputPath": 's3://{}'.format(bucket)
     },
     "ResourceConfig": {
         "InstanceCount": 1,
