@@ -10,7 +10,7 @@ import json
 # Different algorithms have different registry and account parameters
 # see: https://github.com/aws/sagemaker-python-sdk/blob/master/src/sagemaker/amazon/amazon_estimator.py#L272
 def get_image_uri(region_name):
-    """Return object classificaiton algorithm image URI for the given AWS region"""
+    """Return object detection algorithm image URI for the given AWS region"""
     account_id = {
         "us-east-1": "811284229777",
         "us-east-2": "825641698319",
@@ -22,7 +22,7 @@ def get_image_uri(region_name):
         "ap-southeast-2": "544295431143",
         "us-gov-west-1": "226302683700"
     }[region_name]
-    return '{}.dkr.ecr.{}.amazonaws.com/object-classification:latest'.format(account_id, region_name)
+    return '{}.dkr.ecr.{}.amazonaws.com/object-detection:latest'.format(account_id, region_name)
 
 start = time.time()
 
