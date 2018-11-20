@@ -21,6 +21,11 @@ Parameters:
     MaxLength: '64'
     MinLength: '1'
     Type: String
+  JobName:
+    Description: Name of data bucket
+    MaxLength: '64'
+    MinLength: '1'
+    Type: String
   SageMakerRole:
     Description: Name of SageMaker role
     MaxLength: '64'
@@ -45,23 +50,26 @@ Parameters:
 Resources:
   Model:
     Type: "AWS::SageMaker::Model"
+    DeletionPolicy: Delete
     Properties:
-      ModelName: !Sub ${Environment}-${ParentStackName}-${CommitID}-${Timestamp}
+      ModelName: !Sub ${Environment}-${JobName}
       ExecutionRoleArn: !Sub ${SageMakerRole}
       PrimaryContainer:
-        ModelDataUrl: !Sub s3://${BucketName}/${ParentStackName}-${CommitID}-${Timestamp}/output/model.tar.gz
+        ModelDataUrl: !Sub s3://${BucketName}/${JobName}/output/model.tar.gz
         Image: !Sub ${SageMakerImage}
   Endpoint:
     Type: "AWS::SageMaker::Endpoint"
     DependsOn: EndpointConfig
+    DeletionPolicy: Delete
     Properties:
-      EndpointName: !Sub ${Environment}-${ParentStackName}-${CommitID}-${Timestamp}
+      EndpointName: !Sub ${Environment}-${ParentStackName}
       EndpointConfigName: !GetAtt EndpointConfig.EndpointConfigName
   EndpointConfig:
     Type: "AWS::SageMaker::EndpointConfig"
     DependsOn: Model
+    DeletionPolicy: Delete
     Properties:
-        EndpointConfigName: !Sub ${Environment}-${ParentStackName}-${CommitID}-${Timestamp}
+        EndpointConfigName: !Sub ${Environment}-${JobName}
         ProductionVariants:
         - ModelName: !GetAtt Model.ModelName
           VariantName: AllTraffic
