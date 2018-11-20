@@ -13,11 +13,7 @@ configuration_file = sys.argv[2]
 with open(configuration_file) as f:
     data = json.load(f)
 
-commit_id = data["Parameters"]["CommitID"]
-timestamp = data["Parameters"]["Timestamp"]
-
-
-endpoint_name = endpoint_name + "-" + commit_id + "-" + timestamp
+stack_name = data["Parameters"]["ParentStackName"]
 
 runtime = boto3.client('runtime.sagemaker') 
 
