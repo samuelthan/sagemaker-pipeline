@@ -130,7 +130,7 @@ training_params = \
             "DataSource": {
                 "S3DataSource": {
                     "S3DataType": "S3Prefix",
-                    "S3Uri": 's3://sagemaker-objdetect/rego-plate-detection/train/'.format(bucket, prefix),
+                    "S3Uri": 's3://ai-sagemaker-objdetect/rego-plate-detection/train/'.format(bucket, prefix),
                     "S3DataDistributionType": "FullyReplicated"
                 }
             },
@@ -142,7 +142,7 @@ training_params = \
             "DataSource": {
                 "S3DataSource": {
                     "S3DataType": "S3Prefix",
-                    "S3Uri": 's3://sagemaker-objdetect/rego-plate-detection/validation/'.format(bucket, prefix),
+                    "S3Uri": 's3://ai-sagemaker-objdetect/rego-plate-detection/validation/'.format(bucket, prefix),
                     "S3DataDistributionType": "FullyReplicated"
                 }
             },
@@ -154,7 +154,7 @@ training_params = \
             "DataSource": {
                 "S3DataSource": {
                     "S3DataType": "S3Prefix",
-                    "S3Uri": 's3://sagemaker-objdetect/rego-plate-detection/train_annotation/'.format(bucket, prefix),
+                    "S3Uri": 's3://ai-sagemaker-objdetect/rego-plate-detection/train_annotation/'.format(bucket, prefix),
                     "S3DataDistributionType": "FullyReplicated"
                 }
             },
@@ -166,7 +166,7 @@ training_params = \
             "DataSource": {
                 "S3DataSource": {
                     "S3DataType": "S3Prefix",
-                    "S3Uri": 's3://sagemaker-objdetect/rego-plate-detection/validation_annotation/'.format(bucket, prefix),
+                    "S3Uri": 's3://ai-sagemaker-objdetect/rego-plate-detection/validation_annotation/'.format(bucket, prefix),
                     "S3DataDistributionType": "FullyReplicated"
                 }
             },
