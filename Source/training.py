@@ -208,6 +208,7 @@ config_data_qa = {
         "CommitID": commit_id,
         "Environment": "qa",
         "ParentStackName": stack_name,
+        "JobName": job_name,
         "SageMakerRole": role,
         "SageMakerImage": training_image,
         "Timestamp": timestamp
@@ -221,6 +222,7 @@ config_data_prod = {
         "CommitID": commit_id,
         "Environment": "prod",
         "ParentStackName": stack_name,
+        "JobName": job_name,
         "SageMakerRole": role,
         "SageMakerImage": training_image,
         "Timestamp": timestamp
