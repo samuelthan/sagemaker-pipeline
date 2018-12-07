@@ -103,6 +103,7 @@ Resources:
                 - echo "Installing wget and boto3"
                 - pip3 install wget
                 - pip3 install boto3
+                - pip3 install sagemaker
             build:
               commands:
                 - echo "Running training.py"
@@ -138,6 +139,7 @@ Resources:
                 - pip3 install wget
                 - pip3 install boto3
                 - pip3 install numpy
+                - pip3 install sagemaker
             build:
               commands:
               - echo "Running test.py"
@@ -167,6 +169,7 @@ Resources:
                 - pip3 install wget
                 - pip3 install boto3
                 - pip3 install numpy
+                - pip3 install sagemaker
             build:
               commands:
               - echo "Running test.py"

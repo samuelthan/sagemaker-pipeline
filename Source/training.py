@@ -68,10 +68,11 @@ s3_validation_annotation = 's3://ai-sagemaker-objdetect/rego-plate-detection/val
 
 s3_output_location = 's3://ai-sagemaker-objdetect/rego-plate-detection/output'
 
-sagemaker = boto3.client(service_name='sagemaker')
+import sagemaker
+from sagemaker.amazon.amazon_estimator import get_image_uri
 
 sess = sagemaker.Session()
-training_image = get_image_uri(sess.boto_region_name)
+training_image = get_image_uri(sess.boto_region_name, 'object-detection', repo_version="latest")
 print (training_image)
 
 
