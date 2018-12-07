@@ -62,6 +62,7 @@ train_size = 336
 # print ("Finished Downloadng Testing Data")
 
 print ("Setting Algorithm Settings")
+print("Test!!!")
 
 # Specify the base network
 base_network = 'resnet-50'
