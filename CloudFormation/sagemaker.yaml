@@ -37,7 +37,7 @@ Parameters:
     MinLength: '1'
     Type: String
   SageMakerInstanceType:
-    Default: ml.t2.medium
+    Default: ml.c5.xlarge
     Description: Type of Instance for SageMaker inference
     MaxLength: '64'
     MinLength: '1'
