@@ -42,6 +42,12 @@ Parameters:
     MaxLength: '64'
     MinLength: '1'
     Type: String
+  SageMakerAcceleratorType:
+    Default: ml.eia1.medium
+    Description: Type of Instance Accelerator for SageMaker inference
+    MaxLength: '64'
+    MinLength: '1'
+    Type: String
   Timestamp:
     Description: Resource timestamp to prevent naming conflicts
     MaxLength: '64'
@@ -75,4 +81,5 @@ Resources:
           VariantName: AllTraffic
           InitialInstanceCount: 1
           InstanceType: !Sub ${SageMakerInstanceType}
+          AcceleratorType: !Sub ${SageMakerAcceleratorType}
           InitialVariantWeight: 1
