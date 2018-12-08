@@ -64,7 +64,7 @@ train_size = 336
 print ("Setting Algorithm Settings")
 
 # Specify the base network
-base_network = 'resnet-50'
+base_network = 'vgg-16' #'resnet-50'
 # For this training, we will use 18 layers
 label_width = 600
 # we need to specify the input image shape for the training data
